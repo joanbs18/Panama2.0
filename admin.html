@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="adminStyles.css">
+    <script src="https://kit.fontawesome.com/eb496ab1a0.js" crossorigin="anonymous"></script>
+
+    <title>Admin</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="menu">
+            <ul>
+                <li><i class="fas fa-user"></i>
+                    <span class="nombre">Admin</span>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li class="opciones">
+                <a href="#" class="logo">
+                    <img src="img/logo2.png" alt="">
+                    <span class="nav-item">OPCIONES</span>
+
+                </a>
+            </li>
+            <li><a>
+                    <i class="fas fa-home" style="color: #079da5;"></i>
+                    <span class="nav-item">HOME</span>
+                </a></li>
+            <li><a href="citas.html">
+                    <i class="fas fa-calendar"></i>
+                    <span class="nav-item">CITAS</span>
+                </a></li>
+            <li><a href="medico.html">
+                    <i class="fas fa-user"></i>
+                    <span class="nav-item">MEDICO</span>
+                </a></li>
+            <li><a href="Enfermera.html">
+                    <i class="fas fa-user"></i>
+                    <span class="nav-item">ENFERMERA</span>
+                </a></li>
+
+            <li><a href="login.html" class="logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="nav-item">Salir</span>
+                </a></li>
+        </ul>
+    </nav>
+    <!-- CONTENT -->
+    <section id="content">
+        <!-- NAVBAR -->
+
+        <!-- NAVBAR -->
+
+        <!-- MAIN -->
+
+        <main>
+            <div class="head-title">
+                <div class="left">
+                    <h1>Dashboard</h1>
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="#">Dashboard</a>
+                        </li>
+                        <li><i class='bx bx-chevron-right'></i></li>
+                        <li>
+                            <a class="active" href="#">Home</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <ul class="box-info">
+                <li>
+                    <i class='bx bxs-calendar-check'></i>
+                    <span class="text" id="citas">
+
+                    </span>
+                </li>
+                <li>
+                    <i class='bx bxs-group'></i>
+                    <span class="text" id="medico">
+
+                    </span>
+                </li>
+                <li>
+                    <i class='bx bxs-group'></i>
+                    <span class="text" id="paciente">
+
+                    </span>
+                </li>
+            </ul>
+
+
+            <div class="table-data">
+                <div class="order">
+                    <div class="head">
+                        <h3>Ultimas Citas</h3>
+
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Cedula</th>
+                                <th>Paciente</th>
+                                <th>Fecha</th>
+                                <th>Estado</th>
+
+                            </tr>
+                        </thead>
+                        <tbody id="ultimasC">
+                            <tr>
+                                <td>
+
+                                    <p>John Doe</p>
+                                </td>
+                                <td>01-10-2021</td>
+                                <td><span class="status completed">Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>John Doe</p>
+                                </td>
+                                <td>01-10-2021</td>
+                                <td><span class="status pending">Pending</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                    <p>John Doe</p>
+                                </td>
+                                <td>01-10-2021</td>
+                                <td><span class="status process">Process</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                    <p>John Doe</p>
+                                </td>
+                                <td>01-10-2021</td>
+                                <td><span class="status pending">Pending</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                    <p>John Doe</p>
+                                </td>
+                                <td>01-10-2021</td>
+                                <td><span class="status completed">Completed</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="todo">
+                    <div class="head">
+                        <h3>Usuarios</h3>
+                    </div>
+                    <ul class="todo-list" id="user">
+                        <li class="completed">
+                            <p>Todo List</p>
+                            <i class='bx bx-dots-vertical-rounded'></i>
+                        </li>
+                        <li class="completed">
+                            <p>Todo List</p>
+                            <i class='bx bx-dots-vertical-rounded'></i>
+                        </li>
+                        <li class="not-completed">
+                            <p>Todo List</p>
+                            <i class='bx bx-dots-vertical-rounded'></i>
+                        </li>
+                        <li class="completed">
+                            <p>Todo List</p>
+                            <i class='bx bx-dots-vertical-rounded'></i>
+                        </li>
+                        <li class="not-completed">
+                            <p>Todo List</p>
+                            <i class='bx bx-dots-vertical-rounded'></i>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        <!-- MAIN -->
+    </section>
+    <!-- CONTENT -->
+
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+    <script>
+        const token = localStorage.getItem("token");
+        console.log(token)
+        fetch('http://localhost:8082/api/citas/listaCitas', {
+            method: 'get',
+            headers: {
+                'token': token
+            },
+
+        })
+            .then(resp => resp.json())
+            .then(datos => mostrarData(datos.citasL))
+            .catch(err => console.log(err));
+
+        const mostrarData = (data) => {
+            mostrarData4(data)
+            console.log(data)
+            let body = ""
+            body = `<h3>${data.length}</h3><p>Citas Activas</p>`
+            document.getElementById('citas').innerHTML = body
+        }
+
+        const mostrarData4 = (data) => {
+            console.log(data)
+
+            let body = ""
+            for (var i = 0; i < data.length; i++) {
+                let fech = moment(data[i].fecha)
+                console.log(fech.format("DD/MM/YYYY"))
+                let hor = moment(data[i].hora)
+                body += `<tr><td>${data[i].cedulaPaciente}</td  ><td>${data[i].nombre}</td><td id='fechaP'>${fech.format("DD/MM/YYYY")}</td> <td><span class="status process">Process</span></td></tr>`
+            }
+            document.getElementById('ultimasC').innerHTML = body
+
+            //console.log(body)
+        }
+
+        fetch('http://localhost:8082/api/medico/Listamedico', {
+            method: 'get',
+            headers: {
+                'token': token
+            },
+
+        })
+            .then(resp => resp.json())
+            .then(datos => mostrarData2(datos.medico))
+            .catch(err => console.log(err));
+
+        const mostrarData2 = (data) => {
+            console.log(data)
+            let body = ""
+            body = `<h3>${data.length}</h3>
+                        <p>MEDICOS</p>`
+            document.getElementById('medico').innerHTML = body
+        }
+        fetch('http://localhost:8082/api/paciente/listaPacientes', {
+            method: 'get',
+            headers: {
+                'token': token
+            },
+
+        })
+            .then(resp => resp.json())
+            .then(datos => mostrarData3(datos.paciente))
+            .catch(err => console.log(err));
+
+        const mostrarData3 = (data) => {
+            console.log(data)
+            let body = ""
+            body = `<h3>${data.length}</h3>
+                        <p>PACIENTES</p>`
+            document.getElementById('paciente').innerHTML = body
+        }
+
+        fetch('http://localhost:8082/api/auth', {
+            method: 'get',
+            headers: {
+                'token': token
+            },
+
+        })
+            .then(resp => resp.json())
+            .then(datos => mostrarData5(datos.loginsLista))
+            .catch(err => console.log(err));
+
+        const mostrarData5 = (data) => {
+            console.log(data)
+            let body = ""
+            for (let i = 0; i < data.length; i++) {
+                body += `<li class="completed">
+                            <p>${data[i].email + ' -> ' + data[i].rol}</p>
+                            <i class='bx bx-dots-vertical-rounded'></i>
+                        </li>`
+            }
+            document.getElementById('user').innerHTML = body
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,379 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: Arial, Helvetica, sans-serif;
+}
+header {
+  display: flex;
+  position: absolute;
+  z-index: 99;
+}
+.logo {
+  width: 300px;
+  margin-top: 20px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.video1 {
+  position: absolute;
+  min-width: 100%;
+  height: 100vh;
+  max-height: 115vh;
+  object-fit: cover;
+  object-position: bottom;
+}
+.video2 {
+  display: none;
+}
+
+#title {
+  text-align: center;
+  color: #002f50;
+  margin-bottom: 30px;
+}
+
+#encabezado {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(40px);
+  height: 550px;
+  width: 500px;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  background-color: #fff;
+}
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 180px;
+  transition: height 0.2 ease;
+}
+
+#logeo{
+  animation: slide-up 1000ms forwards;
+}
+
+.box {
+  position: relative;
+}
+.box input,
+label {
+  margin-top: 50px;
+}
+
+.box input {
+  background: none;
+  color: #002f50;
+  font-size: 1rem;
+  transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  width: 400px;
+  height: 30px;
+  border: none;
+  border-bottom: 2px solid #002f50;
+}
+.icon {
+  position: absolute;
+  right: 8px;
+  font-size: 1.3rem;
+  color: #002f50;
+  line-height: 140px;
+}
+
+.box label {
+  position: absolute;
+  left: 16px;
+  pointer-events: none;
+  transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0.5rem);
+  color: #002f50;
+  font-size: 20px;
+}
+
+.forget {
+  margin-top: 20px;
+}
+.forget a {
+  color: #1fa3a8;
+
+  text-decoration: none;
+  margin-top: 10px;
+}
+.forget .pass {
+  margin-left: 159px;
+}
+
+.forget a:hover {
+  color: #37dbe0;
+}
+
+.login-link {
+  margin-left: 280px;
+}
+.box input:focus {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #002f50;
+}
+
+.box input:focus ~ label,
+.box input:valid ~ label {
+  transform: translateY(-69%) scale(1.1);
+  color: #0083e0;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+.btn button {
+  color: #fff;
+  background-color: #002f50;
+  border: none;
+  width: 400px;
+  height: 50px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn button:hover {
+  background-color: #114d77;
+}
+
+.icons {
+  column-gap: 25px;
+  margin-top: 10px;
+}
+
+.icons .fa {
+  width: 60px;
+  height: 60px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 26px;
+  color: #002f50;
+  border-radius: 50%;
+  outline: 2px solid #002f50;
+  transition-property: outline-offset, outline-color, background-color;
+  transition-duration: 0.25s;
+}
+
+.icons .fa:hover {
+  outline-offset: 4px;
+  color: #0083e0;
+}
+.icons a:hover {
+  animation: shake 0.25s;
+}
+
+.otros {
+  text-align: center;
+}
+
+.otros p {
+  color: #002f50;
+  margin-top: 20px;
+}
+
+.encabezado2 {
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  display: inline;
+  animation: slide-up 1000ms forwards;
+}
+
+
+
+@keyframes slide-up {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+#titleregitro {
+  text-align: center;
+  color: #002f50;
+  margin-bottom: 30px;
+}
+
+@keyframes shake {
+  10% {
+    transform: rotate(15deg);
+  }
+  20% {
+    transform: rotate(-15deg);
+  }
+  30% {
+    transform: rotate(15deg);
+  }
+  40% {
+    transform: rotate(-15deg);
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .logo {
+    margin-left: 60px;
+  }
+
+  .video1 {
+    display: none;
+    border: 1px solid red;
+  }
+  .video2 {
+    position: absolute;
+    display: block;
+    width: 100%;
+    max-width: 640px;
+    min-height: 916px;
+    object-fit: cover;
+    object-position: bottom;
+  }
+  #title {
+    margin-top: 20px;
+  }
+  #encabezado {
+    width: 350px;
+    height: 480px;
+  }
+
+  .box input {
+    font-size: 0.5rem;
+    width: 300px;
+    height: 30px;
+    margin-left: 12px;
+  }
+
+  .box label {
+    margin-left: 7px;
+  }
+
+  .icon {
+    float: right;
+    margin-right: 10px;
+    font-size: 1rem;
+  }
+  .forget {
+    margin-top: 20px;
+  }
+  .forget a {
+    margin-left: 18px;
+  }
+  .forget .pass {
+    margin-left: 60px;
+  }
+
+  .btn button {
+    width: 300px;
+  }
+  .icons .fa {
+    width: 50px;
+    height: 50px;
+  }
+ 
+  .encabezado2 {
+    width: 350px;
+    height: 480px;
+  }
+
+  #titleregitro {
+    margin-bottom: 0px;
+  }
+  .box input {
+    font-size: 1rem;
+  }
+}
+@media screen and (max-width: 360px) {
+  #title {
+    margin-bottom: -12px;
+  }
+  header img {
+    justify-content: center;
+    align-items: center;
+  }
+  .logo {
+    width: 200px;
+    margin-left: 100px;
+  }
+
+  .video2 {
+    max-width: 360px;
+    min-height: 740px;
+  }
+
+  #encabezado {
+    width: 300px;
+    height: 480px;
+  }
+
+  .box input {
+    font-size: 1rem;
+    width: 250px;
+    height: 30px;
+    margin-left: 10px;
+  }
+
+  .box label {
+    font-size: 20px;
+    margin-left: 10px;
+  }
+  .icon {
+    float: right;
+    margin-right: 10px;
+    font-size: 1rem;
+  }
+
+  .forget a {
+    font-size: 12px;
+    margin-right: 10px;
+  }
+  .btn button {
+    width: 250px;
+    height: 50px;
+  }
+
+  .otros p {
+    font-size: 12px;
+  }
+
+  .icons .fa {
+    width: 50px;
+    height: 50px;
+  }
+}
+@media screen and (max-width: 280px) {
+  .video2 {
+    min-width: 280px;
+  }
+
+  header .logo {
+    width: 250px;
+    margin-left: 18px;
+  }
+
+  #encabezado {
+    margin-top: -50px;
+    width: 260px;
+  }
+
+  .box input {
+    width: 230px;
+  }
+
+  .btn {
+    width: 230px;
+  }
+}

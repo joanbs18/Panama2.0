@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style-medico.css">
+    <title>Enfermera</title>
+    <script src="https://kit.fontawesome.com/eb496ab1a0.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <div class="menu">
+            <ul>
+                <li><i class="fas fa-user"></i>
+                    <span class="nombre">Enfermera</span>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li class="opciones">
+                <a href="#" class="logo">
+                    <img src="img/logo2.png" alt="">
+                    <span class="nav-item">OPCIONES</span>
+
+                </a>
+            </li>
+            <li onclick="showDiv1()"><a>
+                    <i class="fas fa-calendar" style="color: #079da5;"></i>
+                    <span class="nav-item">PROXIMAS CITAS</span>
+                </a></li>
+            <li><a href="#">
+                    <i class="fas fa-user"></i>
+                    <span class="nav-item">PERFIL</span>
+                </a></li>
+            <li onclick="showDiv2()"><a href="#">
+                    <i class="fas fa-user"></i>
+                    <span class="nav-item">Pacientes</span>
+                </a></li>
+            <li><a href="#" class="logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="nav-item">Salir</span>
+                </a></li>
+        </ul>
+    </nav>
+
+    <div class="contenedor" id="div1">
+        <div class="titulo_prox">
+            <h1>PROXIMOS PACIENTES</h1>
+        </div>
+        <div class="tabla_prox_pacientes">
+            <table class="tabla1" id="table">
+                <thead>
+                    <tr>
+                        <th>CEDULA</th>
+                        <th>PACIENTE</th>
+                        <th>FECHA</th>
+                        <th>HORA</th>
+                        <th>ESPECILIDAD</th>
+                    </tr>
+                </thead>
+
+                <tbody id="paciente">
+
+                </tbody>
+            </table>
+        </div>
+        <div class="formulario" id="formulario">
+            <section class="form-register" id="form-register">
+                <div class="icono_cita" onclick="cerrarFormulario()"><i class="fas fa-times"></i></div>
+                <h4>Formulario de Cita</h4>
+                <div class="boxGeneral">
+                    <div class="box">
+
+                        <input id="presion" type="text" required>
+                        <label>Presión arterial</label>
+                    </div>
+                    <div class="box">
+                        <input id="peso" type="text" required>
+                        <label>Peso</label>
+                    </div>
+                    <div class="box">
+                        <input id="altura" type="text" required>
+                        <label>Altura</label>
+                    </div>
+                    <div class="box">
+                        <h4 style="margin-top: 10px;">Sintomas</h4>
+                        <textarea id="sintomas" name="" rows="4" cols="50"></textarea>
+                    </div>
+                </div>
+                <input class="botons" onclick="enviarDatos()" type="submit" value="Siguiente">
+            </section>
+
+        </div>
+    </div>
+    <div class="div2" id="div2">
+        <h1 class="titulocitas">PACIENTES</h1>
+        <div class="contenedor2">
+
+            <div class="tabla_prox_pacientes">
+                <table class="tabla1" id="table">
+                    <thead>
+                        <tr>
+                            <th>PACIENTE</th>
+                            <th>IDENTIFICACIÓN</th>
+                            <th>PESO</th>
+                            <th>EDAD</th>
+                            <th>ALTURA</th>
+                            <th>ENFERMEDADES</th>
+                            <th>SANGRE</th>
+                            <th>ALERGICO A</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="paciente2">
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="fecha" style="display: none;">
+                <div class="titulo">
+                    <h4>Seleccione Fecha</h4>
+                </div>
+                <input type="date" id="fecha" min="2023-01-01">
+                <button id="comprobarFecha" onclick="validarFecha()">Comprobar Fecha</button>
+            </div>
+
+        </div>
+
+
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="ci.js"></script>
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+    <script>
+        const token = localStorage.getItem("token");
+        console.log(token)
+        var cedula2;
+        function obtenerDatos() {
+            var ele = document.getElementsByTagName('tr')
+            for (let j = 0; j < ele.length; j++) {
+                ele[j].addEventListener('click', function () {
+                    var eles = ele[j].getElementsByTagName('th');
+                    console.log(eles)
+                    cedula2 = eles[0].innerHTML
+                    console.log(cedula2)
+                    document.getElementById('formulario').style.display = 'block';
+                });
+
+            }
+
+        }
+
+        function enviarDatos() {
+            peso = document.getElementById('peso').value;
+            altura = document.getElementById('altura').value;
+            presion = document.getElementById('presion').value;
+            sintomas = document.getElementById('sintomas').value;
+
+            if (peso.length == 0 || altura.length == 0 || presion.length == 0 || sintomas.length == 0) {
+                alert('Por favor llene los campos correctamente')
+            } else {
+                insertarConsulta(peso, altura, presion, sintomas);
+                cerrarFormulario();
+                alert('Registrado ' + cedula2)
+            }
+        }
+
+        function insertarConsulta(peso1, altura1, presion1, sintomas1) {
+            var dataA = {
+                cedula: cedula2,
+                detallesPaciente: {
+                    presion: presion1,
+                    peso: peso1,
+                    altura: altura1,
+                    sintomas: sintomas1
+                }
+
+            };
+            try {
+                axios({
+                    method: "post",
+                    headers:{
+                        'token': token,
+                    },
+                    url: "http://localhost:8082/api/consultas/detalles",
+                    data: dataA,
+                });
+            } catch (error) {
+                alert('Estamos teniendo problemas, visitanos más tarde')
+            }
+        }
+        /*
+                function ver() {
+                    var eles = document.getElementsByClassName('hora');
+                    for (let i = 0; i < eles.length; i++) {
+                        eles[i].addEventListener('click', function () {
+                            document.getElementById("Chora").value = eles[i].innerHTML;
+                            document.getElementById('horas').style.display = 'none';
+                            document.getElementById('formulario').style.display = 'flex';
+                            i = 0;
+                        });
+        
+                    }
+        
+                }
+                */
+        function showDiv1() {
+            document.getElementById('div1').style.display = '';
+            document.getElementById('div2').style.display = 'none';
+            document.getElementById('div3').style.display = 'none';
+        }
+
+        function showDiv2() {
+            document.getElementById('div1').style.display = 'none';
+            document.getElementById('div2').style.display = 'inline';
+            document.getElementById('div3').style.display = 'none';
+        }
+        function showDiv3() {
+            document.getElementById('div1').style.display = 'none';
+            document.getElementById('div2').style.display = 'none';
+            document.getElementById('div3').style.display = '';
+        }
+        function showDiv4() {
+            document.getElementById('form-register').style.display = 'none';
+            document.getElementById('form-register2').style.display = 'block';
+        }
+        function showDiv5() {
+            document.getElementById('form-register').style.display = 'block';
+            document.getElementById('form-register2').style.display = 'none';
+        }
+
+
+
+
+
+
+        function cerrarFormulario() {
+            document.getElementById('formulario').style.display = 'none';
+        }
+
+        function abrirFormulario() {
+
+        }
+        /*
+                document.getElementById('table').addEventListener('click', function () {
+                    document.getElementById('formulario').style.display = 'block';
+        
+                });
+        */
+
+
+
+        function boton() {
+            alert("Registro completo");
+            cerrarFormulario();
+        }
+        tabla1()
+        function tabla1() {
+            fetch('http://localhost:8082/api/citas/listaCitas', {
+                method: 'get',
+                headers: {
+                    'token': token
+                },
+
+            })
+                .then(resp => resp.json())
+                .then(datos => mostrarData(datos.citasL))
+                .catch(err => console.log(err));
+
+
+        }
+
+
+
+        const mostrarData = (data) => {
+            console.log(data)
+            let body = ""
+            for (var i = 0; i < data.length; i++) {
+
+                let fech = moment(data[i].fecha)
+                let hor = moment(data[i].hora)
+                body += `<tr><th id='filaC' onclick="obtenerDatos()">${data[i].cedulaPaciente}</th  ><td id='namePaciente' >${data[i].nombre} ${data[i].apellido}</td><td id='fechaP'>${fech.format("DD/MM/YYYY")}</td><td id='horaP'>${hor.format("HH:mm")}</td> <td>${data[i].especialidad}</td></tr>`
+                console.log(body)
+            }
+            document.getElementById('paciente').innerHTML = body
+
+            //console.log(body)
+        }
+        tabla2()
+        function tabla2() {
+            fetch('http://localhost:8082/api/paciente/listaPacientes', {
+                method: 'get',
+                headers: {
+                    'token': token
+                },
+
+            })
+                .then(resp => resp.json())
+                .then(datos => mostrarData2(datos.paciente))
+                .catch(err => console.log(err));
+
+
+        }
+
+        const mostrarData2 = (data) => {
+            let tab = "";
+            for (var i = 0; i < data.length; i++) {
+                tab += `<tr id= filaP${i + 1}><td>${data[i].nombre + " " + data[i].apellidos}</td><td>${data[i].cedula
+                    }</td><td>${data[i].peso_presion[data[i].peso_presion.length - 1].peso
+                    }</td> <td>${data[i].edad}</td><td>${data[i].altura}</td><td>${data[i].enfermedades[data[i].enfermedades.length - 1].tipo
+                    }</td><td>${data[i].tipoSangre}</td><td>${data[i].alergias[data[i].alergias.length - 1].medicamento
+                    }</td></tr>`;
+
+            }
+            document.getElementById("paciente2").innerHTML = tab;
+            //console.log(body)
+        };
+     
+
+    </script>
+</body>
+
+</html>

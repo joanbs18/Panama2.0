@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style-citas.css">
+    <title>Citas</title>
+    <script src="https://kit.fontawesome.com/eb496ab1a0.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <div class="menu">
+            <ul>
+                <li><i class="fas fa-user"></i>
+                    <span class="nombre">Solicitud de Citas</span>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li class="opciones">
+                <a href="#" class="logo">
+                    <img src="img/logo2.png" alt="">
+                    <span class="nav-item">OPCIONES</span>
+
+                </a>
+            </li>
+            <li onclick="showDiv1()"><a>
+                    <i class="fas fa-home" style="color: #079da5;"></i>
+                    <span class="nav-item">HOME</span>
+                </a></li>
+            <li onclick="showDiv2()"><a href="#">
+                    <i class="fas fa-calendar"></i>
+                    <span class="nav-item">CITAS</span>
+                </a></li>
+            <li><a href="#">
+                    <i class="fas fa-user"></i>
+                    <span class="nav-item">CONTACTO</span>
+                </a></li>
+            <li><a href="login.html" class="logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="nav-item">Salir</span>
+                </a></li>
+        </ul>
+    </nav>
+
+    <div class="contenedor" id="div1">
+        <div class="horario">
+            <div class="caja-1">
+                <h1>BIENVENIDO</h1>
+                <h4>Hospital San Rafael Arcangel</h4>
+            </div>
+            <div class="caja-2">
+                <h2>Horario de Atención</h2>
+                <h3>Desde: 10:00am<br>
+                    Hasta: 5:00pm</h3>
+            </div>
+            <div class="caja-3">
+                <h2>Contacto</h2>
+                <h3><i class="fas fa-phone"></i> 2453-1244 <br><i class="fas fa-phone"></i> 8730-1234</h3>
+            </div>
+
+            <div class="caja-4">
+                <img src="img/cb420050f48db644677e020b8778b29d_w200.gif" alt="">
+            </div>
+            <div class="caja-5">
+                <button id="buscarCita" onclick="showDiv2()">Solicite su Cita Aquí</button>
+            </div>
+        </div>
+
+        <div class="container2">
+            <h1 class="tituloSlider">¡Manténgase al día de nuestros servicios!</h1>
+            <div class="slider">
+                <ul>
+                    <li>
+                        <img src="img/slider1.jpg">
+                    </li>
+                    <li>
+                        <img src="img/slider2.jpg">
+                    </li>
+                    <li>
+                        <img src="img/slider3.jpg">
+                    </li>
+                    <li>
+                        <img src="img/slider4.jpg">
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="div2" id="div2">
+        <h1 class="titulocitas">CITAS</h1>
+        <div class="contenedor2">
+            <div class="especialidad">
+                <div class="titulo">
+                    <h4>Elija la Especialidad Médica</h4>
+                </div>
+                <form class="lista">
+                    <select id="select" onchange="ShowSelected1()">
+                        <option disabled selected="">Selecione Aquí</option>
+                        <option value="1">Odontología</option>
+                        <option value="2">Demartología</option>
+                        <option value="3">Rayos-X</option>
+                        <option value="4">Cirujia</option>
+                    </select>
+                    <h4><i class="fas fa-clock"></i> Hora de cierre 5:00pm</h4>
+                </form>
+                <div class="titulo">
+                    <h4>Elija el Medico Disponible</h4>
+                </div>
+                <form class="lista">
+                    <select id="select2" onchange="ShowSelected2()">
+                        <option disabled selected="">Selecione Aquí el medico</option>
+
+                    </select>
+                </form>
+            </div>
+
+            <div class="fecha">
+                <div class="titulo">
+                    <h4>Seleccione Fecha</h4>
+                </div>
+                <input type="date" id="fecha" min="2023-01-01">
+                <button id="comprobarFecha" onclick="validarFecha()">Comprobar Fecha</button>
+            </div>
+
+        </div>
+
+        <div class="horas" id="horas">
+            <div class="box-1">
+                <i onclick="cerrarHoras()" class="fas fa-times"></i>
+                <h2>Elija la hora</h2>
+            </div>
+            <div class="box-2">
+                <h3 id="especialidadId"></h3>
+                <div class="ordenhora" id="ordenhora" onclick="ver()">
+                </div>
+            </div>
+        </div>
+        <div class="formulario" id="formulario">
+            <section class="form-register" id="form-register">
+                <div class="icono_cita" onclick="cerrarFormulario()"><i class="fas fa-times"></i></div>
+                <h4>Formulario de Cita</h4>
+                <input class="controls" type="text" name="nombres" id="nombres" placeholder="Ingrese su Nombre">
+                <input class="controls" type="text" name="apellidos" id="apellidos" placeholder="Ingrese su Apellido">
+                <input class="controls" type="number" name="id" id="cedula" placeholder="Ingrese su Cédula">
+                <input class="controls" type="number" name="number" id="telefono" placeholder="Ingrese su Teléfono">
+                <input class="controls" type="text" name="medico" id="medico" placeholder="" readonly>
+                <input class="controls" type="text" name="Especialidad" id="CEspecialidad" placeholder="" readonly>
+                <input class="controls" type="text" name="Fecha" id="fecha2" placeholder="" readonly>
+                <input class="controls" type="text" name="Fecha" id="Chora" placeholder="" readonly>
+                <input class="botons" onclick="validarInsertCita()" type="submit" value="Registrar Cita">
+            </section>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+    <script>
+        const token = localStorage.getItem("token");
+        function ver() {
+            var eles = document.getElementsByClassName('hora');
+            for (let i = 0; i < eles.length; i++) {
+                eles[i].addEventListener('click', function () {
+                    document.getElementById("Chora").value = eles[i].innerHTML;
+                    document.getElementById('horas').style.display = 'none';
+                    document.getElementById('formulario').style.display = 'flex';
+                    i = 0;
+                });
+
+            }
+
+        }
+        function showDiv1() {
+            document.getElementById('div1').style.display = '';
+            document.getElementById('div2').style.display = 'none';
+            document.getElementById('div3').style.display = 'none';
+        }
+
+        function showDiv2() {
+            document.getElementById('div1').style.display = 'none';
+            document.getElementById('div2').style.display = 'inline';
+            document.getElementById('div3').style.display = 'none';
+        }
+        function showDiv3() {
+            document.getElementById('div1').style.display = 'none';
+            document.getElementById('div2').style.display = 'none';
+            document.getElementById('div3').style.display = '';
+        }
+
+        function validarFecha() {
+            var fecha = document.getElementById('fecha').value;
+            var fecha_hoy = new Date();
+            var mes = (fecha_hoy.getMonth() + 1).toString();
+            if (mes.length <= 1) {
+                mes = '0' + mes;
+            }
+
+            var dia = fecha_hoy.getDate().toString();
+            if (dia.length <= 1) {
+                dia = '0' + dia;
+            }
+            fecha_actual = fecha_hoy.getFullYear() + '-' + mes + '-' + dia;
+            if (fecha < fecha_actual) {
+                document.getElementById('horas').style.display = 'none';
+                alert('Por Favor elija una fecha correcta');
+
+
+                document.getElementById('fecha').value = '';
+            } else {
+                ShowSelected2()
+                var f = moment(fecha);
+                nueva = f.format('DD/MM/YYYY')
+                fechtHoras(nueva)
+                document.getElementById("fecha2").value = f.format('DD/MM/YYYY');
+                document.getElementById('horas').style.display = 'flex';
+
+
+            }
+        }
+
+        function horasDisponibles(citas, f) {
+            var cedula = filtermedi.value
+            var medicos = []
+            console.log(cedula)
+            for (let i = 0; i < citas.length; i++) {
+                if (citas[i].cedulaMedico == cedula) {
+                    let fech = moment(citas[i].fecha)
+                    let date = fech.format("DD/MM/YYYY")
+                    console.log(f, date)
+                    if (date == f) {
+                        let hor = moment(citas[i].hora)
+                        console.log(hor.format("HH:mm"))
+                        medicos.push(hor.format("HH:mm"))
+                    }
+
+
+                }
+            }
+            mostrarHoras(medicos)
+        }
+
+        function mostrarHoras(horasNoDisponible) {
+            var horas = ['08:00', '08:30', '09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00']
+            var hours = horas
+
+            for (let i = 0; i < horas.length; i++) {
+                for (let j = 0; j < horasNoDisponible.length; j++) {
+                    if (hours[i] == horasNoDisponible[j]) {
+                        hours[i] = 'null'
+                    }
+
+                }
+            }
+            let body = ''
+            for (let a = 0; a < hours.length; a++) {
+                if (hours[a] != 'null') {
+                    body += `<p class="hora">${hours[a]}</p>`
+                }
+            }
+            document.getElementById('ordenhora').innerHTML = body;
+        }
+
+        function fechtHoras(f) {
+            fetch(`http://localhost:8082/api/citas/listaCitas`, {
+                method: 'get',
+                headers: {
+                    'token': token,
+                },
+
+            })
+                .then(resp => resp.json())
+                .then(datos => {
+                    horasDisponibles(datos.citasL, f)
+                });
+        }
+
+
+        especialidad = document.getElementById('select');
+
+
+        function cerrarHoras() {
+            document.getElementById('horas').style.display = 'none';
+        }
+
+        function Comprobar() {
+            var selectedOption = this.options[especialidad.selectedIndex];
+            console.log(selectedOption.text);
+            if (selectedOption.text == 'Especialidad') {
+                alert('Elija la especialidad');
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+
+        document.getElementById('fecha').addEventListener('change', function () {
+            document.getElementById('horas').style.display = 'none';
+
+        });
+
+        function ShowSelected1() {
+            var combo = document.getElementById("select");
+            var selected = combo.options[combo.selectedIndex].text;
+            document.getElementById("CEspecialidad").value = selected;
+            var combo2 = document.getElementById("select2");
+            document.getElementById('especialidadId').innerHTML = selected;
+            document.getElementById('horas').style.display = 'none';
+
+        }
+        function ShowSelected2() {
+            var combo = document.getElementById("select2");
+            var selected = combo.options[combo.selectedIndex].text;
+            document.getElementById("medico").value = selected;
+            document.getElementById('horas').style.display = 'none';
+
+        }
+
+        function cerrarFormulario() {
+            document.getElementById('formulario').style.display = 'none';
+        }
+
+        var filterEspec = document.getElementById('select');
+        var filtermedi = document.getElementById('select2');
+        //controle el cambio de filterType
+        filterEspec.addEventListener("change", function () {
+            //defino o selecciona la primera opcion del select
+            var combo = document.getElementById("select");
+            var selected = filterEspec.options[filterEspec.selectedIndex].text;
+            mostrarMedicos(selected)
+            filtermedi.selectedIndex = 0;
+        });
+
+
+        function validarInsertCita() {
+            nombre = document.getElementById('nombres').value;
+            apellido = document.getElementById('apellidos').value;
+            cedula = document.getElementById('cedula').value;
+            telefono = document.getElementById('telefono').value;
+            doctor = document.getElementById('medico').value;
+            especialidad = document.getElementById('CEspecialidad').value;
+            fecha = document.getElementById('fecha2').value;
+            hora = document.getElementById('Chora').value;
+
+
+            if (cedula.length == 0 || telefono.length == 0 || nombre.length == 0 || nombre.length == 0) {
+                alert('Por favor llene los campos correctamente')
+            } else {
+                insertarCita(nombre, apellido, cedula, telefono, especialidad, fecha, hora);
+                cerrarFormulario();
+                alert('Registrado ' + nombre)
+            }
+        }
+
+        function mostrarMedicos(medico) {
+            fetch(`http://localhost:8082/api/medico/.../${medico}`, {
+                method: 'get',
+                headers: {
+                    'token': token,
+                },
+
+            })
+                .then(resp => resp.json())
+                .then(datos => {
+                    llenar(datos.medico)
+                });
+
+        }
+
+        function llenar(medico) {
+            let body = ''
+            for (let i = 0; i < medico.length; i++) {
+                body += `<option value="${medico[i].cedula}">${medico[i].nombre} ${medico[i].apellido}</option>`
+            }
+            document.getElementById("select2").innerHTML = body;
+
+
+        }
+        function insertarCita(nombre, apellido, cedula, telefono, especialidad, fecha, hora) {
+
+            const dataA = {
+                nombre: nombre,
+                apellido: apellido,
+                cedulaPaciente: cedula,
+                telefono: telefono,
+                fecha: fecha,
+                hora: hora,
+                especialidad: especialidad,
+                cedulaMedico: filtermedi.value,
+
+
+            };
+
+            console.log(dataA);
+
+            axios({
+                method: "post",
+                headers: {
+                    'token': token,
+                },
+                url: "http://localhost:8082/api/citas",
+                data: dataA,
+            });
+
+        }
+
+
+
+    </script>
+</body>
+
+</html>

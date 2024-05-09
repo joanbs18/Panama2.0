@@ -1,0 +1,14 @@
+POST http://localhost:8082/api/citas 
+Content-Type: application/json
+
+
+{
+    "nombre": "Noelia",
+    "apellido": "bravo",
+    "telefono": "43434",
+    "fecha": "12/12/2023",
+    "hora": "14:30",
+    "especialidad": "cirujano",
+    "medico": "Juan"
+ 
+}

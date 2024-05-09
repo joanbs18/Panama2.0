@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style-medico.css">
+    <title>Medico</title>
+    <script src="https://kit.fontawesome.com/eb496ab1a0.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <div class="menu">
+            <ul>
+                <li><i class="fas fa-user"></i>
+                    <span class="nombre">MEDICO</span>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li class="opciones">
+                <a href="#" class="logo">
+                    <img src="img/logo2.png" alt="">
+                    <span class="nav-item">OPCIONES</span>
+
+                </a>
+            </li>
+            <li onclick="showDiv1()"><a>
+                    <i class="fas fa-calendar" style="color: #079da5;"></i>
+                    <span class="nav-item">PROXIMAS CITAS</span>
+                </a></li>
+            <li onclick="showDiv2()"><a href="#">
+                    <i class="fas fa-user"></i>
+                    <span class="nav-item">PACIENTES</span>
+                </a></li>
+            <li onclick="showDiv3()"><a href="#">
+                    <i class="fas fa-file"></i>
+                    <span class="nav-item">EXAMENES</span>
+                </a></li>
+            <li><a href="login.html" class="logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="nav-item">Salir</span>
+                </a></li>
+        </ul>
+    </nav>
+
+    <div class="contenedor" id="div1">
+        <div class="titulo_prox">
+            <h1>PROXIMOS PACIENTES</h1>
+        </div>
+        <div class="crud">
+            <i onclick="deleteCita()" class="fas fa-trash"></i>
+        </div>
+
+        <div class="tabla_prox_pacientes">
+
+            <table class="tabla1" id="table">
+                <thead>
+                    <tr>
+                        <th>ID CITA</th>
+                        <th>CEDULA</th>
+                        <th>PACIENTE</th>
+                        <th>APELLIDOS</th>
+                        <th>FECHA</th>
+                        <th>HORA</th>
+                        <th>Especialidad</th>
+                    </tr>
+                </thead>
+
+                <tbody id="paciente" onclick="ver2()">
+
+                </tbody>
+            </table>
+
+        </div>
+        <div class="formulario" id="formulario">
+            <section class="form-register" id="form-register">
+                <div class="icono_cita" onclick="cerrarFormulario()"><i class="fas fa-times"></i></div>
+                <h4>Formulario de Cita</h4>
+                <div class="boxGeneral">
+                    <div class="box">
+
+                        <input id="presion" type="text" required>
+                        <label>Presión arterial</label>
+                    </div>
+                    <div class="box">
+                        <input id="peso" type="text" required>
+                        <label>Peso</label>
+                    </div>
+                    <div class="box">
+                        <input id="altura" type="text" required>
+                        <label>Altura</label>
+                    </div>
+                    <div class="box">
+                        <input id="edad" type="number" required>
+                        <label>Edad</label>
+                    </div>
+                    <div class="box">
+                        <input id="sangre" type="text" required>
+                        <label>Tipo Sangre</label>
+                    </div>
+                </div>
+                <input class="botons" onclick="showDiv4()" type="submit" value="Siguiente">
+            </section>
+            <section class="form-register2" id="form-register2">
+                <div class="icono_cita" onclick="cerrarFormulario()"><i class="fas fa-times"></i></div>
+                <div class="icono_cita2"><i class="fas fa-backward" onclick="showDiv5()"></i></div>
+                <h4>Formulario de Pacientes</h4>
+                <div class="boxGeneral">
+                    <div class="box">
+                        <input id="enfermedad" type="text" required>
+                        <label>Enfermedad</label>
+
+                    </div>
+                    <div class="box">
+                        <input id="alergia" type="text" required>
+                        <label>Alergías</label>
+                    </div>
+                    <!--
+                    <div class="box">
+                        <h4>Tratamiento</h4>
+                        <textarea id="medicamentos" name="" rows="4" cols="50"></textarea>
+                    </div>
+                    <div class="box2">
+                        <input type="checkbox" id="sangre">
+                        <label>Sangre</label><br>
+                        <input type="checkbox" id="orina">
+                        <label>Orina</label><br>
+                        <input type="checkbox" id="eses">
+                        <label>Eses</label><br><br>
+                    </div>
+                -->
+                </div>
+                <input class="botons" onclick="showDiv6()" type="submit" value="Siguiente">
+            </section>
+            <section class="form-register3" id="form-register3">
+                <div class="icono_cita" onclick="cerrarFormulario()"><i class="fas fa-times"></i></div>
+                <div class="icono_cita2"><i class="fas fa-backward" onclick="showDiv7()"></i></div>
+                <h4>Contacto de emergecia</h4>
+                <div class="boxGeneral">
+                    <div class="box">
+                        <input id="nombreEmer1" type="text" required>
+                        <label>Nombre</label>
+                    </div>
+                    <div class="box">
+                        <input id="apellidosEmer1" type="text" required>
+                        <label>Apellidos</label>
+                    </div>
+                    <div class="box">
+                        <input id="relacionEme1" type="text" required>
+                        <label>Relación</label>
+                    </div>
+                    <div class="box">
+                        <input id="teleEme1" type="text" required>
+                        <label>Telefono</label>
+                    </div>
+                    <div class="box">
+                        <h4 style="margin-top: 5px;">Dirección</h4>
+                        <textarea id="direEme1" name="" rows="4" cols="50"></textarea>
+                    </div>
+                </div>
+                <input class="botons" onclick="insertConMedico()" type="submit" value="Guardar">
+            </section>
+        </div>
+        <div class="proximoPaciente" id="proximos">
+
+        </div>
+    </div>
+    <div class="div2" id="div2">
+        <h1 class="titulocitas">PACIENTES</h1>
+        <div class="buscador"><input type="text" name="buscador" id="buscador" placeholder="Buscar..."></div>
+        <div class="crud">
+            <i onclick="deletePaciente()" class="fas fa-trash"></i>
+        </div>
+        <div class="contenedor2">
+            <div class="tabla_prox_pacientes2">
+                <table class="tabla1" id="table">
+                    <thead>
+                        <tr>
+                            <th>PACIENTE</th>
+                            <th>IDENTIFICACIÓN</th>
+                            <th>PESO</th>
+                            <th>EDAD</th>
+                            <th>ALTURA</th>
+                            <th>ENFERMEDADES</th>
+                            <th>SANGRE</th>
+                            <th>ALERGICO A</th>
+                        </tr>
+                    </thead>
+                    <tbody id="paciente2">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+    <div class="div3" id="div3">
+        <h1 class="tituloexam" style="text-align: center; border-bottom: 1px solid #ccc;">EXAMENES</h1>
+
+
+        <div class="contenedor3">
+            <section class="form-register" id="form-register">
+                <div class="icono_cita" onclick="cerrarFormulario()"><i class="fas fa-times"></i></div>
+                <h4>Formulario de Examenes</h4>
+                <div class="boxGeneral">
+                    <div class="box">
+                        <h4>Examen de Sangre</h4>
+                        <input id="cedulaExamen" type="number" required>
+                        <label>Cedula</label>
+                    </div>
+                    <div class="box">
+                        <input id="hemoglobina" type="text" required>
+                        <label>Hemaglobina</label>
+                    </div>
+                    <div class="box">
+                        <input id="hematocrito" type="text" required>
+                        <label>Hematocrito</label>
+                    </div>
+                    <div class="box">
+                        <input id="colesterol" type="text" required>
+                        <label>Colesterol total</label>
+                    </div>
+
+                </div>
+                <input class="botons" onclick="insertarExamen()" type="submit" value="Guardar">
+            </section>
+
+
+        </div>
+
+
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+    <script src="ci.js"></script>
+    <script>
+        const token = localStorage.getItem("token");
+        var horaP = document.getElementById('horaP');
+        var fechaP = document.getElementById('fechap');
+        var fecha_hoy = fecha();
+        var hora_hoy = hora();
+
+        function insertarExamen() {
+            cedulaExam = document.getElementById('cedulaExamen').value;
+            hemaglobina = document.getElementById('hemoglobina').value;
+            hematocrito = document.getElementById('hematocrito').value;
+            colesterol = document.getElementById('colesterol').value;
+
+            if (cedulaExam.length == 0 || hemaglobina.length == 0 || hematocrito == 0 || colesterol == 0) {
+                alert('Revisa los campos')
+            } else {
+                insertExam(cedulaExam, hemaglobina, hematocrito, colesterol)
+            }
+        }
+
+        function insertExam(cedulaExam, hemaglobina, hematocrito, colesterol) {
+            var dataC = {
+                examenes: [
+                    {
+                        tipo: 'Sangre',
+                        caracteristica: [{
+                            Hemoglobina: hemaglobina,
+                            Hematocrito: hematocrito
+                        }]
+                    }
+                ],
+                cedula: cedulaExam
+            }
+            axios({
+                method: "post",
+                headers: {
+                    'token': token,
+                },
+                url: "http://localhost:8082/api/consultas/examenes",
+                data: dataC,
+            });
+            alert('Agregado')
+        }
+        function fecha() {
+            var fecha_hoy = new Date();
+            var mes = (fecha_hoy.getMonth() + 1).toString();
+            if (mes.length <= 1) {
+                mes = '0' + mes;
+            }
+
+            var dia = fecha_hoy.getDate().toString();
+            if (dia.length <= 1) {
+                dia = '0' + dia;
+            }
+            return fecha_actual = fecha_hoy.getFullYear() + '-' + mes + '-' + dia;
+        }
+
+        function hora() {
+            var hora = new Date();
+            return hora.toLocaleTimeString('en-US')
+        }
+        var cedula2, nombre2, apellido2
+        function ver2() {
+            var ele = document.getElementsByTagName('tr')
+            for (let j = 0; j < ele.length; j++) {
+                ele[j].addEventListener('click', function () {
+                    var eles = ele[j].getElementsByTagName('td');
+                    console.log(eles)
+                    cedula2 = eles[1].innerHTML
+                    nombre2 = eles[2].innerHTML
+                    apellido2 = eles[3].innerHTML
+                    console.log(cedula2)
+                    document.getElementById('formulario').style.display = 'block';
+                });
+
+            }
+        }
+
+        function ver() {
+            var eles = document.getElementsByClassName('hora');
+            for (let i = 0; i < eles.length; i++) {
+                eles[i].addEventListener('click', function () {
+                    document.getElementById("Chora").value = eles[i].innerHTML;
+                    document.getElementById('horas').style.display = 'none';
+                    document.getElementById('formulario').style.display = 'flex';
+                    i = 0;
+                });
+
+            }
+
+        }
+        function showDiv1() {
+            document.getElementById('div1').style.display = '';
+            document.getElementById('div2').style.display = 'none';
+            document.getElementById('div3').style.display = 'none';
+        }
+
+        function showDiv2() {
+            document.getElementById('div1').style.display = 'none';
+            document.getElementById('div2').style.display = 'inline';
+            document.getElementById('div3').style.display = 'none';
+        }
+        function showDiv3() {
+            document.getElementById('div1').style.display = 'none';
+            document.getElementById('div2').style.display = 'none';
+            document.getElementById('div3').style.display = 'inline';
+        }
+        function showDiv4() {
+            document.getElementById('form-register').style.display = 'none';
+            document.getElementById('form-register2').style.display = 'block';
+        }
+        function showDiv5() {
+            document.getElementById('form-register').style.display = 'block';
+            document.getElementById('form-register2').style.display = 'none';
+        }
+        function showDiv6() {
+            document.getElementById('form-register2').style.display = 'none';
+            document.getElementById('form-register3').style.display = 'block';
+        }
+        function showDiv7() {
+            document.getElementById('form-register2').style.display = 'block';
+            document.getElementById('form-register3').style.display = 'none';
+        }
+
+        function cerrarFormulario() {
+            document.getElementById('formulario').style.display = 'none';
+        }
+
+        document.getElementById('table').addEventListener('click', function () {
+            //ver2()
+
+            //document.getElementById('formulario').style.display = 'block';
+
+        });
+
+        function deleteCita() {
+            try {
+                const idCit = prompt("Digite el IDCITA que desea borrar", "000");
+                const cita = {
+                    id: idCit
+                }
+                axios({
+                    method: "delete",
+                    headers: {
+                        'token': token,
+                    },
+                    url: "http://localhost:8082/api/citas",
+                    data: cita,
+                }).then(resp => console.log(resp.data))
+                    .catch(err => console.log(err));
+
+                tabla1()
+            } catch (error) {
+
+            }
+
+
+
+        }
+
+        function deletePaciente() {
+            try {
+                const cedu = prompt("Digite el cedula del paciente que desea borrar", "000");
+                let paciente = {
+                    cedula: cedu
+                }
+                axios({
+                    method: "DELETE",
+                    headers: {
+                        'token': token,
+                    },
+                    url: "http://localhost:8082/api/paciente",
+                    data: paciente,
+                }).then(resp => console.log(resp.data))
+                    .catch(err => console.log(err));
+
+            } catch (error) {
+
+            }
+
+            tabla2()
+
+        }
+
+
+        function ff() {
+            alert('Registrado')
+        }
+        tabla1()
+        function tabla1() {
+            fetch('http://localhost:8082/api/citas/listaCitas', {
+                method: 'get',
+                headers: {
+                    'token': token
+                },
+
+            })
+                .then(resp => resp.json())
+                .then(datos => mostrarData(datos.citasL))
+                .catch(err => console.log(err));
+
+
+        }
+        const mostrarData = (data) => {
+            console.log(data)
+            var fechasPacientes = []
+            let body = ""
+            for (var i = 0; i < data.length; i++) {
+
+                let fech = moment(data[i].fecha)
+                console.log(fech.format("DD/MM/YYYY"))
+                fechasPacientes.push(fech.format("MM/DD/YYYY"))
+                let hor = moment(data[i].hora)
+
+                body += `<tr><td>${data[i].idCita}</td  ><td>${data[i].cedulaPaciente}</td><td id='namePaciente'>${data[i].nombre} ${data[i].apellido}</td><td id='lastnamePaciente'>${data[i].apellido}</td><td id='fechaP'>${fech.format("DD/MM/YYYY")}</td><td id='horaP'>${hor.format("HH:mm")}</td> <td>${data[i].especialidad}</td></tr>`
+
+            }
+            document.getElementById('paciente').innerHTML = body
+            proximaCita(fechasPacientes, data)
+            //console.log(body)
+        }
+
+        function proximaCita(fechasPacientes, data) {
+            let f = fechasPacientes[0]
+            console.log(f)
+            for (let i = 0; i < fechasPacientes.length; i++) {
+                if (fechasPacientes[i] <= f) {
+                    var fechita = fechasPacientes[i]
+                    var posicion = i
+                }
+            }
+
+            insertarProximaCita(fechita, data, posicion)
+        }
+
+
+        function insertarProximaCita(fechita, data, i) {
+            let Hoy = new Date();
+            let fin = new Date(fechita);
+            let mseg_dia = 1000 * 60 * 60 * 24;
+            let dias;
+            if (Hoy.getMonth() == 11 && Hoy.getDate() > 25) {
+                fin.setFullYear(fin.getFullYear());
+            }
+            dias = Math.ceil((fin.getTime() - Hoy.getTime()) / (mseg_dia));
+
+            if (Hoy.getMinutes().toString().length == 1) {
+                var hora = Hoy.getHours().toString() + ':0' + Hoy.getMinutes().toString()
+            }
+            else if (Hoy.getHours().toString().length == 1) {
+                var hora = '0' + Hoy.getHours().toString() + ':' + Hoy.getMinutes().toString()
+            } else {
+                var hora = Hoy.getHours().toString() + ':' + Hoy.getMinutes().toString()
+            }
+            console.log(hora)
+            let hou = moment(data[i].hora)
+            var hora1 = hora.substring(0, 2)
+            var falta = (hou.format("HH:mm").substring(0, 2) - hora1);
+            console.log(falta)
+            /*
+            if (falta < 0) {
+                falta = falta + 24
+            } else {
+                falta = falta - 24
+            }*/
+            let proximo = ''
+            proximo = `<h1 class="proximo">Faltan ${dias} dias para atender a ${data[i].nombre, data[i].apellido} y falta ${falta} horas</h1>`
+            document.getElementById('proximos').innerHTML = proximo
+        }
+        table2()
+        //let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjM2Y2M4NWM0ZTRjNzg1ZmQwMmIwZiIsImlhdCI6MTY4MjExMzg2OCwiZXhwIjoxNjgyMTI4MjY4fQ.Axvdm8rna9SyUZYDUXtRoA8iP7_PM-BpQl5cPftLjsg'
+        function table2() {
+            fetch('http://localhost:8082/api/paciente/listaPacientes', {
+                method: 'get',
+                headers: {
+                    'token': token
+                },
+
+            })
+                .then(resp => resp.json())
+                .then(datos => mostrarData2(datos.paciente))
+                .catch(err => console.log(err));
+        }
+        const mostrarData2 = (data) => {
+            let tab = "";
+            for (var i = 0; i < data.length; i++) {
+
+                tab += `<tr><td>${data[i].nombre + " " + data[i].apellidos}</td><td>${data[i].cedula
+                    }</td><td>${data[i].peso_presion[data[i].peso_presion.length - 1].peso
+                    }</td> <td>${data[i].edad}</td><td>${data[i].altura}</td><td>${data[i].enfermedades[data[i].enfermedades.length - 1].tipo
+                    }</td><td>${data[i].tipoSangre}</td><td>${data[i].alergias[data[i].alergias.length - 1].medicamento
+                    }</td></tr>`;
+
+            }
+            document.getElementById("paciente2").innerHTML = tab;
+            //console.log(body)
+        };
+
+        function insertConMedico() {
+            presion = document.getElementById('presion').value;
+            peso = document.getElementById('peso').value;
+            altura = document.getElementById('altura').value;
+            edad = document.getElementById('edad').value;
+            TipoSangre = document.getElementById('sangre').value;
+            enfermedad = document.getElementById('enfermedad').value;
+            alergia = document.getElementById('alergia').value;
+            nombreEmer = document.getElementById('nombreEmer1').value;
+            apellidosEmer = document.getElementById('apellidosEmer1').value;
+            relacion = document.getElementById('relacionEme1').value;
+            teleEmer = document.getElementById('teleEme1').value;
+            direccion = document.getElementById('direEme1').value;
+
+
+            if (presion.length == 0 || peso.length == 0 || altura.length == 0) {
+                alert('Por favor llene los campos correctamente')
+            } else {
+                insert(presion, peso, altura, edad, TipoSangre, enfermedad, alergia, nombreEmer, apellidosEmer, relacion, teleEmer, direccion);
+                cerrarFormulario();
+                //alert('Registrado ' + nombre)
+            }
+
+        }
+
+        function insert(presion, peso, altura, edad, TipoSangre, enfermedad, alergia, nombreEmer, apellidosEmer, relacion, teleEmer, direccion) {
+
+            var dataB = {
+                nombre: nombre2,
+                apellidos: apellido2,
+                cedula: cedula2,
+                peso_presion: [
+                    {
+                        peso: peso,
+                        presion: presion,
+                    }
+                ],
+                edad: edad,
+                altura: altura,
+                enfermedades: [{
+                    tipo: enfermedad
+                }
+                ],
+                tipoSangre: TipoSangre,
+                alergias: [
+                    {
+                        medicamento: alergia
+                    }
+                ],
+                contactoEmergencia: [
+                    {
+                        nombre: nombreEmer,
+                        apellidos: apellidosEmer,
+                        relacionFamiliar: relacion,
+                        telefono: teleEmer,
+                        direccion: direccion,
+                    },
+                    {
+                        nombre: 'Sofia',
+                        apellidos: 'Alvarez',
+                        relacionFamiliar: 'Tia',
+                        telefono: '89898989',
+                        direccion: direccion,
+                    }
+                ]
+            }
+
+            axios({
+                method: "post",
+                headers: {
+                    'token': token,
+                },
+                url: "http://localhost:8082/api/paciente",
+                data: dataB,
+            });
+        }
+    </script>
+</body>
+
+</html>
