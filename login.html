@@ -8,210 +8,23 @@
     <title>Login</title>
     <link rel="stylesheet" href="./css/login.CSS">
     <link rel="shortcut icon" href="/img/logo.webp" type="image/x-icon">
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script src="https://kit.fontawesome.com/eb496ab1a0.js" crossorigin="anonymous"></script>
-
+  
 </head>
+<body>
 
-<div>
-    <header>
-        <img class="logo" src="img/logo.webp" alt="">
-    </header>
 
-    <div id="container">
-        <video class="video1" muted autoplay loop style="min-width: 100%;height: 948px;">
-            <source src="" type="video/mp4">
-        </video>
-        <video class="video2" muted autoplay loop>
-            <source src="img/HospitalMobile1.mp4" type="video/mp4">
-        </video>
-    </div>
-
-    <div class="login">
-        <div id="encabezado" class="encabezado">
-            <div id="logeo">
-                <h2 id="title"> Login </h2>
-                <div class="box">
-                    <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
-                    <input id="user" type="email" name="uname" required>
-                    <label>Usuario</label>
-                </div>
-                <div class="box">
-                    <span class="icon"><ion-icon name="key-outline"></ion-icon></span>
-                    <input id="password" type="password" name="psw" required="8">
-                    <label>Contraseña</label>
-                </div>
-                <div class="forget">
-                    <a class="registrarlink" onclick="showDiv1()">Registrarse</a>
-                    <a class="pass" href="">Olvido su Contraseña?</a>
-                </div>
-                <div class="btn">
-                    <a id="btn" onclick="validarCamposLogin()" href="#"> <button type="submit">Iniciar
-                            sesión</button></a>
-                </div>
-                <div class="otros">
-                    <p>Tambien puedes iniciar Sesión Con</p>
-                    <div class="icons">
-                        <div id="g_id_onload"
-                            data-client_id="567127971120-mhid0uqqdj5utdghag369tr6rbi6jtd3.apps.googleusercontent.com"
-                            data-callback="handleCredentialResponse"
-                            data-login_uri="https://your.domain/your_login_endpoint" data-auto_prompt="false">
-                        </div>
-                        <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline"
-                            data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="left">
-                        </div>
-                        <script src="https://accounts.google.com/gsi/client" async defer></script>
-                    </div>
-                </div>
-            </div>
-            <div class="encabezado2" id="encabezado2">
-                <div id="registrar" class="registrar">
-                    <h2 id="titleregitro"> Registro </h2>
-
-                    <div class="box">
-                        <input id="email" type="email" name="uname" required>
-                        <label>Email</label>
-                    </div>
-                    <div class="box">
-
-                        <input type="password" name="psw" required="8">
-                        <label>Contraseña</label>
-                    </div>
-
-                    <div class="btn">
-                        <a href="citas.html"> <button type="submit">Registrar</button></a>
-                    </div>
-                    <div class="forget">
-                        <a class="login-link" onclick="showDiv2()">¿Ya tiene Cuenta?</a>
-                    </div>
-                    <div class="otros">
-                        <p>Tambien puedes Registrarte Con</p>
-                        <div class="icons">
-                            <a href="#" class="fa fa-google">
-                                <i class="ri-google-line"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
+<div class="section_logueo">
+<form class="form">
+    <span class="title">Register</span>
+    <label for="username" class="label">Username</label>
+    <input type="text" id="username" name="username" required="" class="input">
+    <label for="email" class="label">Email</label>
+    <input type="email" id="email" name="email" required="" class="input">
+    <label for="password" class="label">Password</label>
+    <input type="password" id="password" name="password" required="" class="input">
+    <button type="submit" class="submit">Register</button>
+  </form>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
-<script>
-    document.getElementById('encabezado2').style.display = 'none';
-    function showDiv1() {
-        document.getElementById('logeo').style.display = 'none';
-        document.getElementById('encabezado2').style.display = '';
-        console.log('hola');
-    }
-
-    function showDiv2() {
-        document.getElementById('logeo').style.display = '';
-        document.getElementById('encabezado2').style.display = 'none';
-        console.log('hola');
-
-    }
-
-    function validarCamposLogin() {
-        user = document.getElementById('user').value;
-        password = document.getElementById('password').value;
-
-        if (user.length == 0 || password.length == 0) {
-            alert('Por favor llene los campos correctamente')
-        } else {
-            verificarUser(user, password);
-        }
-    }
-
-    function validarPagina() {
-
-
-
-        var usuario = document.getElementById('user').value;
-        if (usuario == 'Sahir@gmail.com') {
-            document.getElementById('btn').setAttribute('href', 'Enfermera.html');
-        } else if (usuario == 'iriom@gmail.com') {
-            document.getElementById('btn').setAttribute('href', 'medico.html');
-        } else {
-            document.getElementById('btn').setAttribute('href', 'citas.html');
-        }
-
-    }
-    function handleCredentialResponse(response) {
-        console.log(response.credential);
-        const bode = { 'data-client_id': response.credential }
-        const url = "http://localhost:8082/api/auth/google"
-
-
-        axios({
-            method: "post",
-            url: "http://localhost:8082/api/auth/login",
-            data: bode,
-
-        }).then(resp => resp.json())
-            .then(datos => console.log(datos))
-            .catch(err => console.log(err));
-    }
-    function verificarUser(user, contraseña) {
-        try {
-            var dataA = {
-                email: user,
-                password: contraseña
-            };
-            axios({
-                method: "post",
-                url: "http://localhost:8082/api/auth/login",
-                data: dataA,
-            }).then((result) => {
-                console.log(result.data.token)
-                var token = result.data.token
-                localStorage.setItem("token", token);
-                console.log(token)
-            }).catch((err) => {
-
-            });
-
-        } catch (error) {
-            alert('Estamos teniendo problemas, visitanos más tarde')
-            console.log(error);
-        }
-        validarRol(user)
-    }
-    function validarRol(user) {
-        for (let i = 0; i < logins.length; i++) {
-            if (user == logins[i].email) {
-                if (logins[i].rol == 'admin') {
-                    document.getElementById('btn').setAttribute('href', 'admin.html');
-                } else if (logins[i].rol == 'medico') {
-                    document.getElementById('btn').setAttribute('href', 'medico.html');
-                } else if (logins[i].rol == 'public' || logins[i].rol == 'Public') {
-                    document.getElementById('btn').setAttribute('href', 'citas.html');
-                }
-            }
-        }
-
-    }
-    var logins = []
-    fetch('http://localhost:8082/api/auth', {
-        method: 'get',
-
-
-    })
-        .then(resp => resp.json())
-        .then(datos => mostrarData5(datos.loginsLista))
-        .catch(err => console.log(err));
-
-    const mostrarData5 = (data) => {
-        console.log(data)
-        logins = data
-
-    }
-</script>
 
 </body>
 
